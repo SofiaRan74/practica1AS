@@ -57,7 +57,7 @@ app.run(["$rootScope", "$location", "$timeout", function($rootScope, $location, 
 
     $rootScope.$on("$routeChangeSuccess", function (event, current, previous) {
         $("html").css("overflow-x", "hidden")
-        <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+        
         const path = current.$$route.originalPath
 
         if (path.indexOf("splash") == -1) {
@@ -90,6 +90,16 @@ app.controller("productosCtrl", function ($scope, $http) {
     }
 
     buscarProductos()
+     Pusher.logToConsole = true;
+
+    var pusher = new Pusher('6baceab3cb674d9ace87', {
+      cluster: 'us2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
     
     $(document).on("submit", "#frmProducto", function (event) {
         event.preventDefault()
@@ -142,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
 
 
 
