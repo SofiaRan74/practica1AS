@@ -98,7 +98,8 @@ app.controller("productosCtrl", function ($scope, $http) {
 
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
+      //alert(JSON.stringify(data));
+     buscarProductos()
     });
     
     $(document).on("submit", "#frmProducto", function (event) {
@@ -152,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     activeMenuOption(location.hash)
 })
+
 
 
 
